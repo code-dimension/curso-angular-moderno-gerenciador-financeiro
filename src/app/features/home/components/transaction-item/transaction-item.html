@@ -1,0 +1,14 @@
+<mat-card class="card">
+  <div>
+    <div class="card-title">{{ transaction().title }}</div>
+
+    <div class="card-value">
+      <app-transaction-value [transaction]="transaction()" />
+    </div>
+  </div>
+
+  <div class="card-actions">
+    <button matButton="filled">Remover</button>
+    <button matButton="filled">Editar</button>
+  </div>
+</mat-card>

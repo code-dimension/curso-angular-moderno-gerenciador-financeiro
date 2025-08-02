@@ -1,0 +1,9 @@
+:host {
+  &.income {
+    color: var(--custom-color-success);
+  }
+
+  &.outcome {
+    color: var(--mat-sys-error);
+  }
+}
