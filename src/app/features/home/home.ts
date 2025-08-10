@@ -5,16 +5,23 @@ import { Transaction } from '../../shared/transaction/interfaces/transaction';
 import { TransactionType } from '../../shared/transaction/enums/transaction-type';
 import { NoTransactions } from "./components/no-transactions/no-transactions";
 import { HttpClient } from '@angular/common/http';
-import { TransactionsService } from '../../shared/transaction/services/transactions';
+import { TransactionsService } from '../../shared/transaction/services/transactions.service';
+import { MatButtonModule } from '@angular/material/button';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
-  imports: [Balance, TransactionItem, NoTransactions],
+  imports: [
+    Balance,
+    TransactionItem,
+    NoTransactions,
+    MatButtonModule,
+    RouterLink,
+  ],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
 export class Home implements OnInit {
-
   private transactionsService = inject(TransactionsService);
 
   transactions = signal<Transaction[]>([]);

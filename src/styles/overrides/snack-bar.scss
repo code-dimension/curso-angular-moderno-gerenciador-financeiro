@@ -1,0 +1,12 @@
+@use '@angular/material' as mat;
+
+// Customize the entire app. Change :root to your selector if you want to scope the styles.
+:root {
+  .snack-bar-success-feedback {
+    @include mat.snack-bar-overrides((
+        supporting-text-color: var(--mat-sys-on-surface),
+        button-color: var(--mat-sys-on-surface),
+        container-color: var(--custom-color-success),
+    ));
+  }
+}
