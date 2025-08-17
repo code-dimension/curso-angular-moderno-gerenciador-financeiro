@@ -10,6 +10,7 @@
       class="transaction"
       [transaction]="item"
       (edit)="edit($event)"
+      (remove)="remove($event)"
     ></app-transaction-item>
   } @empty {
     <app-no-transactions />

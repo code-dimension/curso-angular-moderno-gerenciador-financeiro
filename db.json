@@ -1,48 +1,6 @@
 {
   "transactions": [
     {
-      "title": "Salário 222",
-      "type": "income",
-      "value": 100,
-      "id": 1
-    },
-    {
-      "title": "VA 2",
-      "type": "income",
-      "value": 50,
-      "id": 2
-    },
-    {
-      "title": "Aluguel 2",
-      "type": "outcome",
-      "value": 150,
-      "id": 3
-    },
-    {
-      "title": "salário",
-      "type": "income",
-      "value": 2500,
-      "id": 4
-    },
-    {
-      "title": "Mercado compras do mês",
-      "type": "outcome",
-      "value": 500,
-      "id": 5
-    },
-    {
-      "title": "Comprei uma coxinha",
-      "type": "outcome",
-      "value": 5,
-      "id": 6
-    },
-    {
-      "title": "Ganhei um pix",
-      "type": "income",
-      "value": 100,
-      "id": 7
-    },
-    {
       "title": "Teste",
       "type": "outcome",
       "value": 0.22,
