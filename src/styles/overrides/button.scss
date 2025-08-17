@@ -1,0 +1,11 @@
+@use '@angular/material' as mat;
+
+// Customize the entire app. Change :root to your selector if you want to scope the styles.
+:root {
+  .btn-error {
+    @include mat.button-overrides((
+        filled-container-color: var(--mat-sys-error),
+        filled-label-text-color: var(--mat-sys-on-error),
+      ));
+  }
+}
