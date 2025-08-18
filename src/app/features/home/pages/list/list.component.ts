@@ -1,36 +1,18 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  Injector,
-  OnInit,
-  signal,
-} from '@angular/core';
-import { Balance } from './components/balance/balance';
-import { TransactionItem } from './components/transaction-item/transaction-item';
-import { Transaction } from '../../shared/transaction/interfaces/transaction';
-import { TransactionType } from '../../shared/transaction/enums/transaction-type';
-import { NoTransactions } from './components/no-transactions/no-transactions';
-import { HttpClient } from '@angular/common/http';
-import { TransactionsService } from '../../shared/transaction/services/transactions.service';
+import { Component, inject, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { Router, RouterLink } from '@angular/router';
-import { FeedbackService } from '../../shared/feedback/services/feedback.service';
-import {
-  MatDialog,
-  MatDialogActions,
-  MatDialogClose,
-  MatDialogContent,
-  MatDialogRef,
-  MatDialogTitle,
-} from '@angular/material/dialog';
-import { filter } from 'rxjs';
-import { ConfirmationDialogService } from '../../shared/dialog/confirmation/services/confirmation-dialog.service';
+import { RouterLink, Router } from '@angular/router';
+import { ConfirmationDialogService } from '../../../../shared/dialog/confirmation/services/confirmation-dialog.service';
+import { FeedbackService } from '../../../../shared/feedback/services/feedback.service';
+import { Transaction } from '../../../../shared/transaction/interfaces/transaction';
+import { TransactionsService } from '../../../../shared/transaction/services/transactions.service';
+import { Balance } from './components/balance/balance';
+import { NoTransactions } from './components/no-transactions/no-transactions';
+import { TransactionItem } from './components/transaction-item/transaction-item';
 import { TransactionsContainerComponent } from './components/transactions-container/transactions-container.component';
 
 @Component({
-  selector: 'app-home',
-  imports: [
+  selector: 'app-list',
+ imports: [
     Balance,
     TransactionItem,
     NoTransactions,
@@ -38,11 +20,11 @@ import { TransactionsContainerComponent } from './components/transactions-contai
     RouterLink,
     TransactionsContainerComponent
   ],
-  templateUrl: './home.html',
-  styleUrl: './home.scss',
+  templateUrl: './list.component.html',
+  styleUrl: './list.component.scss'
 })
-export class Home implements OnInit {
-  private transactionsService = inject(TransactionsService);
+export class ListComponent {
+private transactionsService = inject(TransactionsService);
   private feedbackService = inject(FeedbackService);
   private router = inject(Router);
   private confirmationDialogService = inject(ConfirmationDialogService);
