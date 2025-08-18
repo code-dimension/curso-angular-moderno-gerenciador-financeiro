@@ -26,6 +26,7 @@ import {
 } from '@angular/material/dialog';
 import { filter } from 'rxjs';
 import { ConfirmationDialogService } from '../../shared/dialog/confirmation/services/confirmation-dialog.service';
+import { TransactionsContainerComponent } from './components/transactions-container/transactions-container.component';
 
 @Component({
   selector: 'app-home',
@@ -35,6 +36,7 @@ import { ConfirmationDialogService } from '../../shared/dialog/confirmation/serv
     NoTransactions,
     MatButtonModule,
     RouterLink,
+    TransactionsContainerComponent
   ],
   templateUrl: './home.html',
   styleUrl: './home.scss',
