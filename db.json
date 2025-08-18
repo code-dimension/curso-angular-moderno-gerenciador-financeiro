@@ -1,58 +1,22 @@
 {
   "transactions": [
     {
-      "title": "Teste",
-      "type": "outcome",
-      "value": 0.22,
-      "id": 8
-    },
-    {
-      "title": "wqdqwd",
-      "type": "income",
-      "value": 0.22,
-      "id": 9
-    },
-    {
-      "title": "teste",
-      "type": "outcome",
-      "value": 2222,
-      "id": 10
-    },
-    {
-      "title": "qwdqwd",
-      "type": "income",
-      "value": 2222,
-      "id": 11
-    },
-    {
-      "title": "teste",
-      "type": "income",
-      "value": 20,
-      "id": 12
-    },
-    {
-      "title": "ganhoo",
-      "type": "income",
-      "value": 200,
-      "id": 13
-    },
-    {
       "title": "qwdq",
       "type": "income",
       "value": 0.2,
       "id": 14
     },
     {
-      "title": "teste",
-      "type": "income",
-      "value": 1000,
-      "id": 15
-    },
-    {
       "title": "novo",
       "type": "outcome",
       "value": 100,
       "id": 16
+    },
+    {
+      "title": "Valor alto",
+      "type": "income",
+      "value": 100000,
+      "id": 17
     }
   ]
 }

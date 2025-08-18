@@ -1,10 +1,10 @@
-<app-balance [transactions]="transactions()"></app-balance>
+<app-balance [transactions]="items()"></app-balance>
 
 <div class="actions">
   <a matButton="filled" routerLink="create">Adicionar transação</a>
 </div>
 
-<app-transactions-container class="transactions" [transactions]="transactions()">
+<app-transactions-container class="transactions" [transactions]="items()">
   <ng-template #item let-item="item">
     <app-transaction-item
       class="transaction"
