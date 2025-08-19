@@ -10,18 +10,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { TransactionType } from '../../../../shared/transaction/enums/transaction-type';
 import { NgxMaskDirective } from 'ngx-mask';
-import { TransactionsService } from '../../../../shared/transaction/services/transactions.service';
-import {
-  Transaction,
-  TransactionPayload,
-} from '../../../../shared/transaction/interfaces/transaction';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { FeedbackService } from '../../../../shared/feedback/services/feedback.service';
 import { CdkPortal } from '@angular/cdk/portal';
 import { tap } from 'rxjs';
+import { FeedbackService } from '@shared/feedback/services/feedback.service';
+import { TransactionType } from '@shared/transaction/enums/transaction-type';
+import { TransactionsService } from '@shared/transaction/services/transactions.service';
+import { Transaction } from '@shared/transaction/interfaces/transaction';
 
 @Component({
   selector: 'app-create',

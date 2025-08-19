@@ -1,6 +1,6 @@
 import { Component, contentChild, input, TemplateRef } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
-import { Transaction } from '../../../../../../shared/transaction/interfaces/transaction';
+import { Transaction } from '@shared/transaction/interfaces/transaction';
 
 @Component({
   selector: 'app-transactions-container',
