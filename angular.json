@@ -84,6 +84,9 @@
         },
         "serve": {
           "builder": "@angular/build:dev-server",
+          "options": {
+            "proxyConfig": "src/proxy.config.js"
+          },
           "configurations": {
             "production": {
               "buildTarget": "gerenciador-financeiro:build:production"

@@ -10,33 +10,33 @@ export class TransactionsService {
 
   getAll() {
     return this.httpClient.get<Transaction[]>(
-      'http://localhost:3000/transactions',
+      '/api/transactions',
     );
   }
 
   getById(id: string) {
     return this.httpClient.get<Transaction>(
-      `http://localhost:3000/transactions/${id}`,
+      `/api/transactions/${id}`,
     );
   }
 
   post(payload: TransactionPayload) {
     return this.httpClient.post<Transaction>(
-      'http://localhost:3000/transactions',
+      '/api/transactions',
       payload,
     );
   }
 
   put(id: number, payload: TransactionPayload) {
     return this.httpClient.put<Transaction>(
-      `http://localhost:3000/transactions/${id}`,
+      `/api/transactions/${id}`,
       payload,
     );
   }
 
   delete(id: number) {
     return this.httpClient.delete<Transaction>(
-      `http://localhost:3000/transactions/${id}`,
+      `/api/transactions/${id}`,
     );
   }
 }
