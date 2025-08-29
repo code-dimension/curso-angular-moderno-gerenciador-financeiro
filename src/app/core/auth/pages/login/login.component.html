@@ -1,0 +1,36 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <mat-form-field class="w-100 mb-24">
+    <mat-label>Usuário</mat-label>
+    <input
+      matInput
+      placeholder="Digite o usuário"
+      formControlName="user"
+      required
+    />
+
+    @if (form.controls.user.hasError("required")) {
+      <mat-error>Campo obrigatório</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field class="w-100 mb-24">
+    <mat-label>Senha</mat-label>
+    <input
+      matInput
+      type="password"
+      placeholder="Digite a senha"
+      formControlName="password"
+      required
+    />
+
+    @if (form.controls.password.hasError("required")) {
+      <mat-error>Campo obrigatório</mat-error>
+    }
+  </mat-form-field>
+
+  <div class="submit-container">
+    <button type="submit" matButton="filled" [disabled]="form.invalid">
+      Entrar
+    </button>
+  </div>
+</form>
