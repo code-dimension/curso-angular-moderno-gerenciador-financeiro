@@ -18,7 +18,7 @@ import { tap } from 'rxjs';
 import { FeedbackService } from '@shared/feedback/services/feedback.service';
 import { TransactionType } from '@shared/transaction/enums/transaction-type';
 import { TransactionsService } from '@shared/transaction/services/transactions.service';
-import { Transaction } from '@shared/transaction/interfaces/transaction';
+import { Transaction, TransactionPayload } from '@shared/transaction/interfaces/transaction';
 
 @Component({
   selector: 'app-create',
