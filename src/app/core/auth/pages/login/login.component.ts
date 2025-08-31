@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { UserCredentials } from '../../interfaces/user-credentials';
 import { AuthTokenStorageService } from '../../services/auth-token-storage.service';
+import { LoggedInUserStoreService } from '../../stores/logged-in-user-store';
+import { switchMap, tap } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +20,7 @@ export class LoginComponent {
   authService = inject(AuthService);
   router = inject(Router);
   authTokenStorageService = inject(AuthTokenStorageService);
+  loggedInUserStoreService = inject(LoggedInUserStoreService);
 
   form = new FormGroup({
     user: new FormControl('', {
@@ -38,10 +41,15 @@ export class LoginComponent {
       password: this.form.controls.password.value as string
     }
 
-    this.authService.login(payload)
+    this.authService
+      .login(payload)
+      .pipe(
+        tap((res) => this.authTokenStorageService.set(res.token)),
+        switchMap((res) => this.authService.getCurrentUser(res.token)),
+        tap((user) => this.loggedInUserStoreService.setUser(user)),
+      )
       .subscribe({
         next: (res) => {
-          this.authTokenStorageService.set(res.token);
           this.router.navigate(['']);
         },
         error: (response: HttpErrorResponse) => {
@@ -50,8 +58,7 @@ export class LoginComponent {
               wrongCredentials: true,
             });
           }
-
-        }
-      })
+        },
+      });
   }
 }
