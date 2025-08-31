@@ -5,6 +5,15 @@ import { UserCredentials } from '../interfaces/user-credentials';
 import { AuthTokenResponse } from '../interfaces/auth-token-response';
 import { User } from '../interfaces/user';
 
+function generateToken(): string {
+  let token = '';
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  for (let i = 0; i < 20; i++) {
+    token += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+  return token;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,7 +21,7 @@ export class AuthService {
 
   login(payload: UserCredentials): Observable<AuthTokenResponse> {
     if (payload.user === 'admin' && payload.password === '123') {
-      return of({ token: 'fake-token' });
+      return of({ token: generateToken() });
     }
 
     return throwError(
@@ -28,6 +37,10 @@ export class AuthService {
     return of({
       username: 'admin',
     });
+  }
+
+  refreshToken(token: string) {
+    return of({ token: generateToken() });
   }
 
 }
