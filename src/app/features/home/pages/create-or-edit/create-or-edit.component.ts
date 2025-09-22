@@ -19,6 +19,7 @@ import { FeedbackService } from '@shared/feedback/services/feedback.service';
 import { TransactionType } from '@shared/transaction/enums/transaction-type';
 import { TransactionsService } from '@shared/transaction/services/transactions.service';
 import { Transaction, TransactionPayload } from '@shared/transaction/interfaces/transaction';
+import { FullWidthDirective } from '@shared/material/form-field/directives/full-width.directive';
 
 @Component({
   selector: 'app-create',
@@ -29,6 +30,7 @@ import { Transaction, TransactionPayload } from '@shared/transaction/interfaces/
     MatButtonModule,
     MatButtonToggleModule,
     NgxMaskDirective,
+    FullWidthDirective
   ],
   templateUrl: './create-or-edit.component.html',
   styleUrl: './create-or-edit.component.scss',
