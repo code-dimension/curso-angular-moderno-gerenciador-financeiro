@@ -1,5 +1,13 @@
 <mat-card class="card">
   <div>
+    <ng-template [isIncome]="transaction().type" [isIncomeElse]="elseTemplate">
+      <mat-chip>Ganho</mat-chip>
+    </ng-template>
+
+    <ng-template #elseTemplate>
+      <mat-chip>Gasto</mat-chip>
+    </ng-template>
+
     <div class="card-title">{{ transaction().title }}</div>
 
     <div class="card-value">
@@ -8,7 +16,15 @@
   </div>
 
   <div class="card-actions">
-    <button matButton="filled" matButtonColor="error" (click)="remove.emit(transaction())">Remover</button>
-    <button matButton="filled" (click)="edit.emit(transaction())">Editar</button>
+    <button
+      matButton="filled"
+      matButtonColor="error"
+      (click)="remove.emit(transaction())"
+    >
+      Remover
+    </button>
+    <button matButton="filled" (click)="edit.emit(transaction())">
+      Editar
+    </button>
   </div>
 </mat-card>
