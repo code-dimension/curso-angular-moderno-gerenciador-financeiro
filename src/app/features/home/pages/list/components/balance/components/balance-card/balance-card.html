@@ -4,6 +4,6 @@
   </mat-card-header>
 
   <mat-card-content>
-    <p [class]="cssClass()" >{{ value() | currency }}</p>
+    <p [class]="cssClass()" >{{ value() | humanizeCurrency }}</p>
   </mat-card-content>
 </mat-card>
