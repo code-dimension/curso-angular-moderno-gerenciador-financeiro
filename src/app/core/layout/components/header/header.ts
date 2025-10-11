@@ -9,23 +9,6 @@ import { LoggedInUserStoreService } from '../../../auth/stores/logged-in-user-st
   selector: 'app-header',
   imports: [MatToolbarModule, MatButtonModule],
   templateUrl: './header.html',
-  styleUrl: './header.scss'
+  styleUrl: './header.scss',
 })
-export class Header {
-
-  private readonly logoutFacadeService = inject(LogoutFacadeService);
-  private readonly router = inject(Router);
-  private readonly loggedInUserStoreService = inject(LoggedInUserStoreService)
-
-  isLoggedIn = computed(() => this.loggedInUserStoreService.isLoggedIn())
-
-  logout() {
-    this.logoutFacadeService.logout()
-      .subscribe({
-        next: () => {
-          this.router.navigate(['/auth/login']);
-        }
-      });
-  }
-
-}
+export class Header {}

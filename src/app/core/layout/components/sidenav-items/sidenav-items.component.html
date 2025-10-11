@@ -8,3 +8,9 @@
     >
   }
 </mat-nav-list>
+
+@if (isLoggedIn()) {
+  <mat-action-list>
+    <button mat-list-item appLogout>Sair</button>
+  </mat-action-list>
+}
