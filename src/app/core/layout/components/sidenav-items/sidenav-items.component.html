@@ -1,0 +1,10 @@
+<mat-nav-list>
+  @for (link of links(); track link) {
+    <a
+      mat-list-item
+      [activated]="link.url | isUrlActive"
+      [routerLink]="link.url"
+      >{{ link.label }}</a
+    >
+  }
+</mat-nav-list>

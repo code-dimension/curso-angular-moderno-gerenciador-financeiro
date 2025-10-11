@@ -12,8 +12,6 @@ export class IsUrlActivePipe implements PipeTransform {
   }
 
   private isActive(url: string) {
-    console.log('isActive', url);
-
     return this.router.isActive(url, {
       fragment: 'ignored',
       matrixParams: 'ignored',
