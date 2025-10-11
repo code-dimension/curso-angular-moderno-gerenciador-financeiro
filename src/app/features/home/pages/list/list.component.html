@@ -4,6 +4,14 @@
   <a matButton="filled" routerLink="create">Adicionar transação</a>
 </div>
 
+<button (click)="addProp()">Add Prop</button>
+
+<ul>
+  @for (item of object() | customKeyValue; track $index) {
+    <li>{{ item.key }} -  {{ item.value }}</li>
+  }
+</ul>
+
 <app-transactions-container class="transactions" [transactions]="items()">
   <ng-template #item let-item="item">
     <app-transaction-item
