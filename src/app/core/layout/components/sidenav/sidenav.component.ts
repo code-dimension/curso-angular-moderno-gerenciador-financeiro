@@ -11,13 +11,12 @@ import { SidenavVisibilityStore } from '@core/layout/stores/sidenav-visibility.s
   styleUrl: './sidenav.component.scss',
 })
 export class SidenavComponent {
-
   private readonly mobileLayoutService = inject(MobileLayoutService);
   private readonly sidenavVisibilityStore = inject(SidenavVisibilityStore);
 
   isMobile = this.mobileLayoutService.isMobile();
 
-  sidenavMode = computed(() => this.isMobile() ? 'over' : 'side');
+  sidenavMode = computed(() => (this.isMobile() ? 'over' : 'side'));
 
   isSidenavOpened = computed(() => {
     if (!this.isMobile()) {
@@ -27,4 +26,7 @@ export class SidenavComponent {
     return this.sidenavVisibilityStore.isVisible();
   });
 
+  onSidenavBackdropClick() {
+    this.sidenavVisibilityStore.close();
+  }
 }

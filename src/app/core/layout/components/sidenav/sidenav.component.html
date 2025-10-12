@@ -1,4 +1,4 @@
-<mat-sidenav-container class="sidenav-container">
+<mat-sidenav-container class="sidenav-container" (backdropClick)="onSidenavBackdropClick()">
   <mat-sidenav class="sidenav" [opened]="isSidenavOpened()" [mode]="sidenavMode()">
     <app-sidenav-items />
   </mat-sidenav>
