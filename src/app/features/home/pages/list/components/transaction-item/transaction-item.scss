@@ -1,12 +1,18 @@
+@use "mixins/media-query" as mq;
+
 .card {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   padding: 18px;
 
+  @include mq.media-query(sm) {
+    flex-direction: row;
+  }
+
   .card-title {
     font-size: 16px;
-    font-weight: bold;;
+    font-weight: bold;
   }
 
   .card-value {
@@ -16,9 +22,14 @@
 
   .card-actions {
     display: flex;
-    justify-content: flex-end;
-    margin-left: auto;
+    justify-content: center;
     gap: 8px;
-  }
+    margin-top: 16px;
 
+    @include mq.media-query(sm) {
+      justify-content: flex-end;
+      margin-left: auto;
+      margin-top: 0;
+    }
+  }
 }
