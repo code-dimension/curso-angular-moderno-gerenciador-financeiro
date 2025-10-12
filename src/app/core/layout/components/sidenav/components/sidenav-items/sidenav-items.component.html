@@ -4,6 +4,7 @@
       mat-list-item
       [activated]="link.url | isUrlActive"
       [routerLink]="link.url"
+      (click)="closeSidenav()"
       >{{ link.label }}</a
     >
   }
