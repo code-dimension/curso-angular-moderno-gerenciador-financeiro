@@ -2,8 +2,8 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { IsUrlActivePipe } from './pipes/is-url-active-pipe';
 import { MatListModule } from '@angular/material/list';
-import { LoggedInUserStoreService } from '../../../auth/stores/logged-in-user-store';
 import { LogoutDirective } from './directives/logout.directive';
+import { LoggedInUserStoreService } from '@core/auth/stores/logged-in-user-store';
 
 @Component({
   selector: 'app-sidenav-items',
