@@ -2,8 +2,9 @@
   @for (link of links(); track link) {
     <a
       mat-list-item
-      [activated]="link.url | isUrlActive"
       [routerLink]="link.url"
+      routerLinkActive="mdc-list-item--activated"
+      [routerLinkActiveOptions]="{ exact: true }"
       (click)="closeSidenav()"
       >{{ link.label }}</a
     >
