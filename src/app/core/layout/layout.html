@@ -2,17 +2,7 @@
 
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav class="sidenav" opened="" mode="side">
-    <mat-nav-list>
-      @for (link of links(); track link) {
-        <a
-          mat-list-item
-          [routerLink]="link.url"
-          routerLinkActive="mdc-list-item--activated"
-          [routerLinkActiveOptions]="{ exact: true }"
-          >{{ link.label }}</a
-        >
-      }
-    </mat-nav-list>
+    <app-sidenav-items />
   </mat-sidenav>
 
   <mat-sidenav-content>
