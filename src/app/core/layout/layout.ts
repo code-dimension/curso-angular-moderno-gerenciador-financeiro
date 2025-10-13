@@ -1,9 +1,12 @@
 import { Component, inject, signal } from '@angular/core';
 import { Header } from './components/header/header';
-import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import {
+  RouterLink,
+  RouterLinkActive,
+  RouterOutlet,
+} from '@angular/router';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-import { IsUrlActivePipe } from './pipes/is-url-active-pipe';
 
 @Component({
   selector: 'app-layout',
@@ -13,7 +16,7 @@ import { IsUrlActivePipe } from './pipes/is-url-active-pipe';
     MatSidenavModule,
     MatListModule,
     RouterLink,
-    IsUrlActivePipe,
+    RouterLinkActive,
   ],
   templateUrl: './layout.html',
   styleUrl: './layout.scss',
