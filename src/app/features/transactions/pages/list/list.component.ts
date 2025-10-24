@@ -8,6 +8,7 @@ import { ConfirmationDialogService } from '@shared/dialog/confirmation/services/
 import { FeedbackService } from '@shared/feedback/services/feedback.service';
 import { Transaction } from '@shared/transaction/interfaces/transaction';
 import { TransactionsService } from '@shared/transaction/services/transactions.service';
+import { SearchComponent } from './components/search/search.component';
 
 @Component({
   selector: 'app-list',
@@ -16,7 +17,8 @@ import { TransactionsService } from '@shared/transaction/services/transactions.s
     NoTransactions,
     MatButtonModule,
     RouterLink,
-    TransactionsContainerComponent
+    TransactionsContainerComponent,
+    SearchComponent
   ],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss'
