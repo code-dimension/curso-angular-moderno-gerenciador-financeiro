@@ -6,16 +6,16 @@ import { DialogData } from "../interfaces/dialog-data";
 @Component({
   selector: 'app-confirmation-dialog',
   template: `
-    <h2 mat-dialog-title>{{ dialogData().title }}</h2>
+    <h2 mat-dialog-title>{{ resolvedDialogData().title }}</h2>
     <mat-dialog-content>
-      {{ dialogData().message }}
+      {{ resolvedDialogData().message }}
     </mat-dialog-content>
     <mat-dialog-actions>
       <button matButton [mat-dialog-close]="false">
-        {{ dialogData().noBtnText || 'Não' }}
+        {{ resolvedDialogData().noBtnText || 'Não' }}
       </button>
       <button matButton [mat-dialog-close]="true" cdkFocusInitial>
-        {{ dialogData().yesBtnText || 'Sim' }}
+        {{ resolvedDialogData().yesBtnText || 'Sim' }}
       </button>
     </mat-dialog-actions>
   `,
