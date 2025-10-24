@@ -42,7 +42,7 @@ export class HumanizeCurrencyPipe implements PipeTransform {
     if (firstCharOfSecondValue === '0') {
       return `${firstValue}${suffix}`;
     } else {
-      return `${firstValue}${firstCharOfSecondValue}${suffix}`;
+      return `${firstValue}.${firstCharOfSecondValue}${suffix}`;
     }
   }
 
