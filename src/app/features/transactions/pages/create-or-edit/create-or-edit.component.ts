@@ -41,6 +41,7 @@ export class CreateOrEditComponent {
   private transactionsService = inject(TransactionsService);
   private router = inject(Router);
   private feedbackService = inject(FeedbackService);
+  private activatedRoute = inject(ActivatedRoute);
 
   transaction = input<Transaction>();
 
@@ -76,7 +77,7 @@ export class CreateOrEditComponent {
 
     this.createOrEdit(payload).subscribe({
       next: () => {
-        this.router.navigate(['/']);
+        this.router.navigate(['../../'], { relativeTo: this.activatedRoute });
       },
     });
   }

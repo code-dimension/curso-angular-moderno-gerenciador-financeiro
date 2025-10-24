@@ -20,6 +20,10 @@ export class SidenavItemsComponent {
       label: 'Home',
       url: '/',
     },
+     {
+      label: 'Transações',
+      url: '/transactions',
+    },
   ]);
 
   isLoggedIn = computed(() => this.loggedInUserStoreService.isLoggedIn());

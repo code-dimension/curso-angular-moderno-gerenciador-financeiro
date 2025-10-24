@@ -1,7 +1,7 @@
 {
   "transactions": [
     {
-      "title": "qwdq",
+      "title": "qwdq 44",
       "type": "income",
       "value": 0.2,
       "id": 14
@@ -17,6 +17,18 @@
       "type": "income",
       "value": 100000,
       "id": 17
+    },
+    {
+      "title": "wqdwd",
+      "type": "outcome",
+      "value": 2222222,
+      "id": 18
+    },
+    {
+      "title": "qwdq",
+      "type": "outcome",
+      "value": 23233,
+      "id": 19
     }
   ]
 }
