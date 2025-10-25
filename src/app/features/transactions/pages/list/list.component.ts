@@ -33,6 +33,8 @@ private transactionsService = inject(TransactionsService);
 
   items = linkedSignal(() => this.transactions());
 
+  searchTerm = signal('');
+
   edit(transaction: Transaction) {
     this.router.navigate(['edit', transaction.id]);
   }
