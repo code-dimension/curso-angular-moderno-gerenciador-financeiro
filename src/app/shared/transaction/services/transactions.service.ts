@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { Transaction, TransactionPayload } from '../interfaces/transaction';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -8,35 +8,31 @@ import { HttpClient } from '@angular/common/http';
 export class TransactionsService {
   private httpClient = inject(HttpClient);
 
-  getAll() {
-    return this.httpClient.get<Transaction[]>(
-      '/api/transactions',
-    );
+  getAll(searchTerm?: string) {
+    let httpParams = new HttpParams();
+
+    if (searchTerm) {
+      httpParams = httpParams.append('q', searchTerm);
+    }
+
+    return this.httpClient.get<Transaction[]>('/api/transactions', {
+      params: httpParams,
+    });
   }
 
   getById(id: string) {
-    return this.httpClient.get<Transaction>(
-      `/api/transactions/${id}`,
-    );
+    return this.httpClient.get<Transaction>(`/api/transactions/${id}`);
   }
 
   post(payload: TransactionPayload) {
-    return this.httpClient.post<Transaction>(
-      '/api/transactions',
-      payload,
-    );
+    return this.httpClient.post<Transaction>('/api/transactions', payload);
   }
 
   put(id: number, payload: TransactionPayload) {
-    return this.httpClient.put<Transaction>(
-      `/api/transactions/${id}`,
-      payload,
-    );
+    return this.httpClient.put<Transaction>(`/api/transactions/${id}`, payload);
   }
 
   delete(id: number) {
-    return this.httpClient.delete<Transaction>(
-      `/api/transactions/${id}`,
-    );
+    return this.httpClient.delete<Transaction>(`/api/transactions/${id}`);
   }
 }
