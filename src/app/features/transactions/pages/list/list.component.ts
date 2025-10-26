@@ -17,6 +17,7 @@ import { Transaction } from '@shared/transaction/interfaces/transaction';
 import { TransactionsService } from '@shared/transaction/services/transactions.service';
 import { SearchComponent } from './components/search/search.component';
 import { firstValueFrom } from 'rxjs';
+import { rxResource } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-list',
@@ -43,16 +44,16 @@ export class ListComponent {
 
   searchTerm = signal('');
 
-  resourceRef = resource({
+  resourceRef = rxResource({
     params: () => {
       return {
         searchTerm: this.searchTerm(),
       };
     },
-    loader: ({ params: { searchTerm } }) => {
-      return firstValueFrom(this.transactionsService.getAll(searchTerm));
+    stream: ({ params: { searchTerm } }) => {
+      return this.transactionsService.getAll(searchTerm);
     },
-    defaultValue: []
+    defaultValue: [],
   });
 
   edit(transaction: Transaction) {
