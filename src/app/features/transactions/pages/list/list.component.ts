@@ -1,8 +1,4 @@
-import {
-  Component,
-  inject,
-  signal,
-} from '@angular/core';
+import { Component, inject, Signal, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink, Router } from '@angular/router';
 import { NoTransactions } from './components/no-transactions/no-transactions';
@@ -13,6 +9,13 @@ import { FeedbackService } from '@shared/feedback/services/feedback.service';
 import { Transaction } from '@shared/transaction/interfaces/transaction';
 import { TransactionsService } from '@shared/transaction/services/transactions.service';
 import { SearchComponent } from './components/search/search.component';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
+import { debounceTime } from 'rxjs';
+
+function typeDelay(signal: Signal<string>) {
+  const observable = toObservable(signal).pipe(debounceTime(500));
+  return toSignal(observable, { initialValue: '' });
+}
 
 @Component({
   selector: 'app-list',
@@ -35,7 +38,9 @@ export class ListComponent {
 
   searchTerm = signal('');
 
-  resourceRef = this.transactionsService.getAllWithHttpResource(this.searchTerm);
+  resourceRef = this.transactionsService.getAllWithHttpResource(
+    typeDelay(this.searchTerm),
+  );
 
   edit(transaction: Transaction) {
     this.router.navigate(['edit', transaction.id]);
