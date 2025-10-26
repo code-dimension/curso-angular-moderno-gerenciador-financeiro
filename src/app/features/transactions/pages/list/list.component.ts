@@ -1,9 +1,6 @@
 import {
   Component,
   inject,
-  input,
-  linkedSignal,
-  resource,
   signal,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -16,8 +13,6 @@ import { FeedbackService } from '@shared/feedback/services/feedback.service';
 import { Transaction } from '@shared/transaction/interfaces/transaction';
 import { TransactionsService } from '@shared/transaction/services/transactions.service';
 import { SearchComponent } from './components/search/search.component';
-import { firstValueFrom } from 'rxjs';
-import { rxResource } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-list',
@@ -38,23 +33,9 @@ export class ListComponent {
   private router = inject(Router);
   private confirmationDialogService = inject(ConfirmationDialogService);
 
-  // transactions = input.required<Transaction[]>();
-
-  // items = linkedSignal(() => this.transactions());
-
   searchTerm = signal('');
 
-  resourceRef = rxResource({
-    params: () => {
-      return {
-        searchTerm: this.searchTerm(),
-      };
-    },
-    stream: ({ params: { searchTerm } }) => {
-      return this.transactionsService.getAll(searchTerm);
-    },
-    defaultValue: [],
-  });
+  resourceRef = this.transactionsService.getAllWithHttpResource(this.searchTerm);
 
   edit(transaction: Transaction) {
     this.router.navigate(['edit', transaction.id]);
