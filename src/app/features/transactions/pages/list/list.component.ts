@@ -1,4 +1,4 @@
-import { Component, inject, Signal, signal } from '@angular/core';
+import { Component, computed, inject, Signal, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink, Router } from '@angular/router';
 import { NoTransactions } from './components/no-transactions/no-transactions';
@@ -11,6 +11,7 @@ import { TransactionsService } from '@shared/transaction/services/transactions.s
 import { SearchComponent } from './components/search/search.component';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { debounceTime } from 'rxjs';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 function typeDelay(signal: Signal<string>) {
   const observable = toObservable(signal).pipe(debounceTime(500));
@@ -26,6 +27,7 @@ function typeDelay(signal: Signal<string>) {
     RouterLink,
     TransactionsContainerComponent,
     SearchComponent,
+    MatProgressBarModule
   ],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss',
@@ -41,6 +43,10 @@ export class ListComponent {
   resourceRef = this.transactionsService.getAllWithHttpResource(
     typeDelay(this.searchTerm),
   );
+
+  transactions = computed(() => this.resourceRef.value())
+
+  isLoading = computed(() => this.resourceRef.isLoading())
 
   edit(transaction: Transaction) {
     this.router.navigate(['edit', transaction.id]);

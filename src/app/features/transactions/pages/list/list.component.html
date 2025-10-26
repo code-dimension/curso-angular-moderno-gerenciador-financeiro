@@ -1,21 +1,28 @@
 <div class="actions">
   <app-search class="search" [(searchTerm)]="searchTerm"></app-search>
-  <a class="add-transaction" matButton="filled" routerLink="create/new">Adicionar transação</a>
+  <a class="add-transaction" matButton="filled" routerLink="create/new"
+    >Adicionar transação</a
+  >
 </div>
 
-Está carregando: {{ resourceRef.isLoading() }}
+@if (isLoading()) {
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+} @else {
+  <app-transactions-container
+    class="transactions"
+    [transactions]="transactions()"
+  >
+    <ng-template #item let-item="item">
+      <app-transaction-item
+        class="transaction"
+        [transaction]="item"
+        (edit)="edit($event)"
+        (remove)="remove($event)"
+      ></app-transaction-item>
+    </ng-template>
 
-<app-transactions-container class="transactions" [transactions]="resourceRef.value()">
-  <ng-template #item let-item="item">
-    <app-transaction-item
-      class="transaction"
-      [transaction]="item"
-      (edit)="edit($event)"
-      (remove)="remove($event)"
-    ></app-transaction-item>
-  </ng-template>
-
-  <ng-template #noItems>
-    <app-no-transactions />
-  </ng-template>
-</app-transactions-container>
+    <ng-template #noItems>
+      <app-no-transactions />
+    </ng-template>
+  </app-transactions-container>
+}
