@@ -1,7 +1,8 @@
-import { Component, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { Balance } from './components/balance/balance';
 import { Transaction } from '@shared/transaction/interfaces/transaction';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
+import { PieChartConfig } from './components/pie-chart/pie-chart-config.interface';
 
 @Component({
   selector: 'app-home',
@@ -11,4 +12,12 @@ import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 })
 export class HomeComponent {
   transactions = input.required<Transaction[]>();
+
+  chartConfig = computed<PieChartConfig>(() => {
+    return {
+      labels: ['teste'],
+      dataLabel: 'teste',
+      data: [100],
+    };
+  });
 }
