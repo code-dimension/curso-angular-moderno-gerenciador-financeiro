@@ -3,6 +3,8 @@ import { Balance } from './components/balance/balance';
 import { Transaction } from '@shared/transaction/interfaces/transaction';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 import { PieChartConfig } from './components/pie-chart/pie-chart-config.interface';
+import { TransactionType } from '@shared/transaction/enums/transaction-type';
+import { sumTransactions } from '@shared/transaction/functions/sum-transactions';
 
 @Component({
   selector: 'app-home',
@@ -13,11 +15,19 @@ import { PieChartConfig } from './components/pie-chart/pie-chart-config.interfac
 export class HomeComponent {
   transactions = input.required<Transaction[]>();
 
+  totalIncomes = computed(() => {
+    return sumTransactions(this.transactions(), TransactionType.INCOME);
+  });
+
+  totalOutcomes = computed(() => {
+    return sumTransactions(this.transactions(), TransactionType.OUTCOME);
+  });
+
   chartConfig = computed<PieChartConfig>(() => {
     return {
-      labels: ['teste'],
-      dataLabel: 'teste',
-      data: [100],
+      labels: ['Ganhos', 'Gastos'],
+      dataLabel: 'Valor total',
+      data: [this.totalIncomes(), this.totalOutcomes()],
     };
   });
 }
