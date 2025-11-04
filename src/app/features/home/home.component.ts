@@ -1,4 +1,4 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, input, signal } from '@angular/core';
 import { Balance } from './components/balance/balance';
 import { Transaction } from '@shared/transaction/interfaces/transaction';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
@@ -14,6 +14,8 @@ import { sumTransactions } from '@shared/transaction/functions/sum-transactions'
 })
 export class HomeComponent {
   transactions = input.required<Transaction[]>();
+
+  canLoadComponent = signal(false);
 
   totalIncomes = computed(() => {
     return sumTransactions(this.transactions(), TransactionType.INCOME);
