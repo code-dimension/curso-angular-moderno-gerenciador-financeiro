@@ -1,21 +1,30 @@
 <app-balance [transactions]="transactions()"></app-balance>
 
-@defer (when canLoadComponent(); on interaction(interactionClick)) {
-  <app-pie-chart [config]="chartConfig()"></app-pie-chart>
-} @loading (minimum 1s) {
-  <p>Carregando conteúdo</p>
-} @placeholder (minimum 1s) {
-  <div>
-    <button>Clique inválido</button>
-  </div>
+<div class="chart-container">
+  @defer (when canLoadComponent(); on interaction(interactionClick)) {
+    <mat-card class="card">
+      <app-pie-chart [config]="chartConfig()"></app-pie-chart>
+    </mat-card>
+  } @loading (minimum 1s) {
+    <mat-card class="card">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </mat-card>
+  } @placeholder (minimum 1s) {
+    <mat-card class="card">
+      <button matButton="filled">Clique inválido</button>
 
-  <div>
-    <button #interactionClick>Clique usando interaction</button>
-  </div>
+      <button matButton="filled" #interactionClick>
+        Clique usando interaction
+      </button>
 
-  <div>
-    <button (click)="canLoadComponent.set(true)">Clique usando when</button>
-  </div>
-} @error {
-  <p>Erro ao carregar o componente!</p>
-}
+      <button matButton="filled" (click)="canLoadComponent.set(true)">
+        Clique usando when
+      </button>
+    </mat-card>
+  } @error {
+    <mat-card class="card">
+      <mat-icon>error</mat-icon>
+      O componente não foi carregado corretamente! Verifique a sua conexão de internet e recarregue essa página.
+    </mat-card>
+  }
+</div>

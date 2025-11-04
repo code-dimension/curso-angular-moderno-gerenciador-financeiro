@@ -5,10 +5,21 @@ import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 import { PieChartConfig } from './components/pie-chart/pie-chart-config.interface';
 import { TransactionType } from '@shared/transaction/enums/transaction-type';
 import { sumTransactions } from '@shared/transaction/functions/sum-transactions';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-home',
-  imports: [Balance, PieChartComponent],
+  imports: [
+    Balance,
+    PieChartComponent,
+    MatCardModule,
+    MatButtonModule,
+    MatProgressBarModule,
+    MatIconModule
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
