@@ -1,6 +1,6 @@
 import { Component, computed, inject, Signal, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { RouterLink, Router } from '@angular/router';
+import { RouterLink, Router, ActivatedRoute } from '@angular/router';
 import { NoTransactions } from './components/no-transactions/no-transactions';
 import { TransactionItem } from './components/transaction-item/transaction-item';
 import { TransactionsContainerComponent } from './components/transactions-container/transactions-container.component';
@@ -37,6 +37,7 @@ export class ListComponent {
   private feedbackService = inject(FeedbackService);
   private router = inject(Router);
   private confirmationDialogService = inject(ConfirmationDialogService);
+  private activatedRoute = inject(ActivatedRoute);
 
   searchTerm = signal('');
 
@@ -49,7 +50,7 @@ export class ListComponent {
   isLoading = computed(() => this.resourceRef.isLoading())
 
   edit(transaction: Transaction) {
-    this.router.navigate(['edit', transaction.id]);
+    this.router.navigate(['edit', transaction.id], { relativeTo: this.activatedRoute });
   }
 
   remove(transaction: Transaction) {
