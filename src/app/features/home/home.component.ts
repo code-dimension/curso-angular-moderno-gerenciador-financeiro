@@ -1,4 +1,4 @@
-import { Component, computed, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, signal } from '@angular/core';
 import { Balance } from './components/balance/balance';
 import { Transaction } from '@shared/transaction/interfaces/transaction';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
@@ -22,6 +22,8 @@ import { MatIconModule } from '@angular/material/icon';
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
+
 })
 export class HomeComponent {
   transactions = input.required<Transaction[]>();

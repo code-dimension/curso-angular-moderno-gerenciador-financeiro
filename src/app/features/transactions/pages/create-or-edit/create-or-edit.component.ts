@@ -1,5 +1,5 @@
 import { JsonPipe } from '@angular/common';
-import { Component, computed, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -36,6 +36,8 @@ import { CustomFormFieldDirective } from '@shared/material/form-field/directives
   ],
   templateUrl: './create-or-edit.component.html',
   styleUrl: './create-or-edit.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
+
 })
 export class CreateOrEditComponent {
   private transactionsService = inject(TransactionsService);
