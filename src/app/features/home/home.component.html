@@ -1,13 +1,13 @@
-<app-balance [transactions]="transactions()"></app-balance>
+<app-balance [transactions]="transactions()" />
 
 <div class="chart-container">
   @defer (when canLoadComponent(); on interaction(interactionClick)) {
     <mat-card class="card">
-      <app-pie-chart [config]="chartConfig()"></app-pie-chart>
+      <app-pie-chart [config]="chartConfig()" />
     </mat-card>
   } @loading (minimum 1s) {
     <mat-card class="card">
-      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      <mat-progress-bar mode="indeterminate" />
     </mat-card>
   } @placeholder (minimum 1s) {
     <mat-card class="card">
@@ -24,7 +24,8 @@
   } @error {
     <mat-card class="card">
       <mat-icon>error</mat-icon>
-      O componente não foi carregado corretamente! Verifique a sua conexão de internet e recarregue essa página.
+      O componente não foi carregado corretamente! Verifique a sua conexão de
+      internet e recarregue essa página.
     </mat-card>
   }
 </div>
