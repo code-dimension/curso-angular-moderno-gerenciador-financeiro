@@ -19,6 +19,10 @@
     order: 2;
   }
 
+  .type {
+    order: 3;
+  }
+
   .add-transaction {
     order: 1;
     margin-bottom: 24px;
@@ -26,13 +30,18 @@
 
   @include mq.media-query(sm) {
     flex-direction: row;
+    gap: 24px;
 
     .search {
       order: 1;
     }
 
-    .add-transaction {
+    .type {
       order: 2;
+    }
+
+    .add-transaction {
+      order: 3;
       margin-left: auto;
     }
   }

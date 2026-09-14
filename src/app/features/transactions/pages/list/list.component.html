@@ -1,5 +1,15 @@
 <div class="actions">
-  <app-search class="search" [(searchTerm)]="searchTerm" />
+  <app-search class="search" [(searchTerm)]="search" />
+
+  <mat-form-field class="type">
+    <mat-label>Tipo</mat-label>
+    <mat-select [(ngModel)]="type">
+      @for (item of typeFilterOptions; track item.value) {
+        <mat-option [value]="item.value">{{ item.label }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
   <a class="add-transaction" matButton="filled" routerLink="create/new"
     >Adicionar transação</a
   >

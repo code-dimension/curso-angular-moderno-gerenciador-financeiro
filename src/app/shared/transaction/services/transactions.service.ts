@@ -6,6 +6,7 @@ import {
   httpResource,
   HttpResourceRequest,
 } from '@angular/common/http';
+import { GetTransactionsFilter } from '../interfaces/get-transations-filter';
 
 @Injectable({
   providedIn: 'root',
@@ -25,13 +26,17 @@ export class TransactionsService {
     });
   }
 
-  getAllWithHttpResource(searchTerm: Signal<string>) {
+  getAllWithHttpResource(filter: Signal<GetTransactionsFilter>) {
     return httpResource<Transaction[]>(
       () => {
         let httpParams = new HttpParams();
 
-        if (searchTerm()) {
-          httpParams = httpParams.append('q', searchTerm());
+        if (filter().search) {
+          httpParams = httpParams.append('q', filter().search);
+        }
+
+        if (filter().type !== 'all') {
+          httpParams = httpParams.append('type', filter().type);
         }
 
         return {
