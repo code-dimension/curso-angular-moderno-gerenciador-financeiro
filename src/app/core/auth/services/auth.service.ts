@@ -1,25 +1,18 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Service } from '@angular/core';
+import { inject, Service } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { UserCredentials } from '../interfaces/user-credentials';
 import { AuthTokenResponse } from '../interfaces/auth-token-response';
 import { User } from '../interfaces/user';
-
-function generateToken(): string {
-  let token = '';
-  const characters =
-    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  for (let i = 0; i < 20; i++) {
-    token += characters.charAt(Math.floor(Math.random() * characters.length));
-  }
-  return token;
-}
+import { GenerateTokenService } from './generate-token.service';
 
 @Service()
 export class AuthService {
+  private generateTokenService = inject(GenerateTokenService);
+
   login(payload: UserCredentials): Observable<AuthTokenResponse> {
     if (payload.user === 'admin' && payload.password === '123') {
-      return of({ token: generateToken() });
+      return of({ token: this.generateTokenService.create() });
     }
 
     return throwError(
@@ -42,6 +35,6 @@ export class AuthService {
   }
 
   refreshToken(token: string) {
-    return of({ token: generateToken() });
+    return of({ token: this.generateTokenService.create() });
   }
 }
