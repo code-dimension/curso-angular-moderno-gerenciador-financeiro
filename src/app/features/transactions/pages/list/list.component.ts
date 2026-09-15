@@ -4,6 +4,7 @@ import {
   computed,
   debounced,
   inject,
+  injectAsync,
   linkedSignal,
   signal,
 } from '@angular/core';
@@ -56,6 +57,9 @@ export class ListComponent {
   private router = inject(Router);
   private confirmationDialogService = inject(ConfirmationDialogService);
   private activatedRoute = inject(ActivatedRoute);
+  private reportsService = injectAsync(
+    () => import('./../../../../shared/transaction/services/reports.service'),
+  );
 
   typeFilterOptions = typeFilterOptions;
 
@@ -118,6 +122,10 @@ export class ListComponent {
           });
         },
       });
+  }
+
+  async export() {
+    (await this.reportsService()).exportToCsv(this.transactions());
   }
 
   private removeTransacationFromArray(transaction: Transaction) {
