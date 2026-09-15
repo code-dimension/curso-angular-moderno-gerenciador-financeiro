@@ -6,6 +6,7 @@ import {
   inject,
   injectAsync,
   linkedSignal,
+  onIdle,
   signal,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -59,6 +60,9 @@ export class ListComponent {
   private activatedRoute = inject(ActivatedRoute);
   private reportsService = injectAsync(
     () => import('./../../../../shared/transaction/services/reports.service'),
+    {
+      prefetch: onIdle
+    }
   );
 
   typeFilterOptions = typeFilterOptions;
