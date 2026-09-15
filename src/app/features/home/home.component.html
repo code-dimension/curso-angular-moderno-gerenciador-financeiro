@@ -29,3 +29,25 @@
     </mat-card>
   }
 </div>
+
+<div style="margin-top: 1000px;" #trigger>TRIGGER</div>
+
+<div class="chart-container" style="margin-top: 2000px;">
+  @defer (on viewport({ trigger: trigger, scrollMargin: '500px' })) {
+    <mat-card class="card">
+      <app-pie-chart [config]="chartConfig()" />
+    </mat-card>
+  } @loading (minimum 1s) {
+    <mat-card class="card">
+      <mat-progress-bar mode="indeterminate" />
+    </mat-card>
+  } @placeholder (minimum 1s) {
+    <mat-card class="card"> placeholder </mat-card>
+  } @error {
+    <mat-card class="card">
+      <mat-icon>error</mat-icon>
+      O componente não foi carregado corretamente! Verifique a sua conexão de
+      internet e recarregue essa página.
+    </mat-card>
+  }
+</div>
