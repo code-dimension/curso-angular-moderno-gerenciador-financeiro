@@ -1,8 +1,6 @@
-import { computed, Injectable, signal } from '@angular/core';
+import { computed, signal, Service } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Service()
 export class SidenavVisibilityStore {
   private state = signal(false);
 

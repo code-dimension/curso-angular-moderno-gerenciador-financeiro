@@ -1,9 +1,7 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Service } from '@angular/core';
 import { LocalStorageToken } from '../tokens/local-storage';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Service()
 export class AuthTokenStorageService {
   private readonly key: string = 'auth-token';
 
@@ -14,7 +12,7 @@ export class AuthTokenStorageService {
   }
 
   has(): boolean {
-    return Boolean(this.get())
+    return Boolean(this.get());
   }
 
   get(): string | null {

@@ -1,12 +1,10 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Service } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { filter } from 'rxjs';
 import { ConfirmationDialogComponent } from '../components/confirmation-dialog.component';
 import { DialogData } from '../interfaces/dialog-data';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Service()
 export class ConfirmationDialogService {
   private dialog = inject(MatDialog);
 

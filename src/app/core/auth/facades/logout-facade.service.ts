@@ -1,15 +1,12 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Service } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { AuthTokenStorageService } from '../services/auth-token-storage.service';
 import { tap } from 'rxjs';
 import { LoggedInUserStoreService } from '../stores/logged-in-user-store';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Service()
 export class LogoutFacadeService {
-
-  authService = inject(AuthService)
+  authService = inject(AuthService);
   authTokenStorageService = inject(AuthTokenStorageService);
   loggedInUserStoreService = inject(LoggedInUserStoreService);
 
@@ -19,5 +16,4 @@ export class LogoutFacadeService {
       tap(() => this.loggedInUserStoreService.logout()),
     );
   }
-
 }

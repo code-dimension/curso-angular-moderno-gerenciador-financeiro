@@ -1,11 +1,8 @@
-import { computed, Injectable, signal } from '@angular/core';
+import { computed, signal, Service } from '@angular/core';
 import { User } from '../interfaces/user';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Service()
 export class LoggedInUserStoreService {
-
   private readonly state = signal<User | null>(null);
 
   currentUser = computed(() => this.state());
@@ -19,5 +16,4 @@ export class LoggedInUserStoreService {
   logout() {
     this.state.set(null);
   }
-
 }

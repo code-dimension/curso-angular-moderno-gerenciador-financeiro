@@ -1,4 +1,4 @@
-import { inject, Injectable, Signal } from '@angular/core';
+import { inject, Signal, Service } from '@angular/core';
 import { Transaction, TransactionPayload } from '../interfaces/transaction';
 import {
   HttpClient,
@@ -8,9 +8,7 @@ import {
 } from '@angular/common/http';
 import { GetTransactionsFilter } from '../interfaces/get-transations-filter';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Service()
 export class TransactionsService {
   private httpClient = inject(HttpClient);
 
