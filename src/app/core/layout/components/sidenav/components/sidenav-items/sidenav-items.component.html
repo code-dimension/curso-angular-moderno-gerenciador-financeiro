@@ -3,8 +3,7 @@
     <a
       mat-list-item
       [routerLink]="link.url"
-      routerLinkActive="mdc-list-item--activated"
-      [routerLinkActiveOptions]="{ exact: true }"
+      [activated]="link.isActive()"
       (click)="closeSidenav()"
       >{{ link.label }}</a
     >
