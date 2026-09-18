@@ -30,6 +30,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { createMouseNear } from './functions/create-mouse-near';
+import { ActionLogService } from '../../store/action-log.service';
 
 const typeFilterOptions = [
   { value: 'all', label: 'Todas' },
@@ -84,6 +85,12 @@ export class ListComponent {
       },
     },
   );
+
+  private actionLogService = inject(ActionLogService);
+
+  constructor() {
+    this.actionLogService.add('Listagem de transações');
+  }
 
   typeFilterOptions = typeFilterOptions;
 

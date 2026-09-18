@@ -1,5 +1,12 @@
 import { JsonPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  input,
+} from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -18,10 +25,14 @@ import { tap } from 'rxjs';
 import { FeedbackService } from '@shared/feedback/services/feedback.service';
 import { TransactionType } from '@shared/transaction/enums/transaction-type';
 import { TransactionsService } from '@shared/transaction/services/transactions.service';
-import { Transaction, TransactionPayload } from '@shared/transaction/interfaces/transaction';
+import {
+  Transaction,
+  TransactionPayload,
+} from '@shared/transaction/interfaces/transaction';
 import { FullWidthDirective } from '@shared/material/form-field/directives/full-width.directive';
 import { MarginBottomDirective } from '@shared/material/form-field/directives/margin-bottom.directive';
 import { CustomFormFieldDirective } from '@shared/material/form-field/directives/custom-form-field.directive';
+import { ActionLogService } from '../../store/action-log.service';
 
 @Component({
   selector: 'app-create',
@@ -32,18 +43,18 @@ import { CustomFormFieldDirective } from '@shared/material/form-field/directives
     MatButtonModule,
     MatButtonToggleModule,
     NgxMaskDirective,
-    CustomFormFieldDirective
+    CustomFormFieldDirective,
   ],
   templateUrl: './create-or-edit.component.html',
   styleUrl: './create-or-edit.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
-
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreateOrEditComponent {
   private transactionsService = inject(TransactionsService);
   private router = inject(Router);
   private feedbackService = inject(FeedbackService);
   private activatedRoute = inject(ActivatedRoute);
+  private actionLogService = inject(ActionLogService);
 
   transaction = input<Transaction>();
 
@@ -65,6 +76,14 @@ export class CreateOrEditComponent {
         }),
       }),
   );
+
+  constructor() {
+    effect(() => {
+      this.actionLogService.add(
+        this.isEdit() ? 'Editando transação' : 'Criando transação',
+      );
+    });
+  }
 
   submit() {
     if (this.form().invalid) {
