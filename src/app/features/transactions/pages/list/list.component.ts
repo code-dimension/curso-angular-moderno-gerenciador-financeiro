@@ -1,13 +1,16 @@
 import {
+  afterNextRender,
   ChangeDetectionStrategy,
   Component,
   computed,
   debounced,
+  ElementRef,
   inject,
   injectAsync,
   linkedSignal,
   onIdle,
   signal,
+  viewChild,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink, Router, ActivatedRoute } from '@angular/router';
@@ -26,6 +29,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
+import { createMouseNear } from './functions/create-mouse-near';
 
 const typeFilterOptions = [
   { value: 'all', label: 'Todas' },
@@ -58,11 +62,27 @@ export class ListComponent {
   private router = inject(Router);
   private confirmationDialogService = inject(ConfirmationDialogService);
   private activatedRoute = inject(ActivatedRoute);
+
+  private isMouseNear = createMouseNear();
+  private exportBtn = viewChild.required('exportBtn', {
+    read: ElementRef,
+  });
+
   private reportsService = injectAsync(
     () => import('./../../../../shared/transaction/services/reports.service'),
     {
-      prefetch: onIdle
-    }
+      prefetch: () => {
+        return new Promise<void>((resolve) => {
+          afterNextRender({
+            read: () => {
+              this.isMouseNear(this.exportBtn().nativeElement).then(() =>
+                resolve(),
+              );
+            },
+          });
+        });
+      },
+    },
   );
 
   typeFilterOptions = typeFilterOptions;
