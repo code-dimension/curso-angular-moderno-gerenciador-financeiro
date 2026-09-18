@@ -6,6 +6,9 @@ export default [
   {
     path: '',
     component: HomeComponent,
+    data: {
+      title: 'Home',
+    },
     resolve: {
       transactions: getTransactionsResolver,
     },
